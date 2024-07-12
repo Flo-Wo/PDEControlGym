@@ -2,17 +2,25 @@ from abc import ABC, abstractmethod
 import numpy as np
 from typing import Optional
 
+
 class BaseReward(ABC):
     """
     Reward (Abstract base class)
 
-    This class is to be inherited by any custom reward functions. It has one abstract method, namely reward which is required to be overridden. 
+    This class is to be inherited by any custom reward functions. It has one abstract method, namely reward which is required to be overridden.
 
     """
 
     @abstractmethod
-    def reward(self, uVec: np.ndarray =None, time_index: int = None, terminate: Optional[bool] =None, truncate: Optional[bool] =None, action: Optional[float] =None):
-        r""" 
+    def reward(
+        self,
+        uVec: np.ndarray = None,
+        time_index: int = None,
+        terminate: Optional[bool] = None,
+        truncate: Optional[bool] = None,
+        action: Optional[float] = None,
+    ):
+        r"""
         reward
 
         :param uVec: (required) This is the solution vector of the PDE of which to compute the reward on.

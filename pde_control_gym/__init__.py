@@ -5,7 +5,8 @@ register(
 )
 
 register(
-    id="PDEControlGym-ReactionDiffusionPDE1D", entry_point="pde_control_gym.src:ReactionDiffusionPDE1D"
+    id="PDEControlGym-ReactionDiffusionPDE1D",
+    entry_point="pde_control_gym.src:ReactionDiffusionPDE1D",
 )
 
 register(
