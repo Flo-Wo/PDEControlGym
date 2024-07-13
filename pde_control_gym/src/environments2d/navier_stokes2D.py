@@ -191,7 +191,8 @@ class NavierStokes2D(PDEEnv2D):
         self.u, self.v = u_next, v_next
         obs = self.U[self.time_index]
         truncated = False
-        info = {}
+        # TODO(to be conform with legacy code), before info = {}
+        info = {"proj_real_rew": 0.0}
         return obs, reward, terminate, truncated, info
 
     def terminate(self):
@@ -206,7 +207,9 @@ class NavierStokes2D(PDEEnv2D):
             return False
 
     # Resets the system state
-    def reset(self, seed: Optional[int] = None, options: Optional[dict] = None):
+    def reset(
+        self, seed: Optional[int] = None, options: Optional[dict] = None, **kwargs
+    ):
         """
         reset
 
@@ -221,7 +224,8 @@ class NavierStokes2D(PDEEnv2D):
             raise Exception(
                 "Please pass both an initial condition and a recirculation function in the parameters dictionary. See documentation for more details"
             )
-        self.U = np.zeros((self.nt, self.nx, self.ny, 2))
+        # TODO(reset method, float32 vs float 64)
+        self.U = np.zeros((self.nt, self.nx, self.ny, 2), dtype=np.float32)
         self.time_index = 0
         self.u = init_u
         self.v = init_v  # np.random.uniform(-5, 5) * np.ones_like(self.X)
